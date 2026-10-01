@@ -1,19 +1,21 @@
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #020617;
-}
-::-webkit-scrollbar-thumb {
-    background: #1e293b;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #facc15;
-}
 
-.transition-all {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-}
+/* Sistema visual compartido — Limón Studios */
+:root{color-scheme:dark;--ls-bg:#020617;--ls-surface:#0f172a;--ls-surface-2:#111c32;--ls-border:#263449;--ls-text:#e2e8f0;--ls-muted:#94a3b8;--ls-accent:#facc15;--ls-accent-hover:#fde047;--ls-radius:1rem;--ls-shadow:0 18px 55px rgba(0,0,0,.22)}
+html{scroll-behavior:smooth;scroll-padding-top:90px}body{background:var(--ls-bg);color:var(--ls-text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}::selection{background:var(--ls-accent);color:#020617}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:var(--ls-bg)}::-webkit-scrollbar-thumb{background:#334155;border-radius:999px}::-webkit-scrollbar-thumb:hover{background:var(--ls-accent)}
+a{transition:color .18s ease,opacity .18s ease}a:hover{color:var(--ls-accent)}button{transition:transform .18s ease,background-color .18s ease,border-color .18s ease,opacity .18s ease}button:hover{filter:brightness(1.06)}button:active{transform:translateY(1px)}
+input:not([type=checkbox]):not([type=radio]),select,textarea{max-width:100%;color:var(--ls-text);background-color:#020617;border:1px solid var(--ls-border);border-radius:.75rem;outline:none;transition:border-color .18s ease,box-shadow .18s ease}input:focus,select:focus,textarea:focus{border-color:var(--ls-accent)!important;box-shadow:0 0 0 3px rgba(250,204,21,.12)}input::placeholder,textarea::placeholder{color:#64748b}
+header{border-color:var(--ls-border)!important}footer{border-color:var(--ls-border)!important}main{width:100%}
+.bg-slate-950{background-color:var(--ls-bg)!important}.bg-slate-900{background-color:var(--ls-surface)!important}.bg-slate-800{background-color:#1e293b!important}.border-slate-800,.border-slate-700{border-color:var(--ls-border)!important}.text-yellow-400{color:var(--ls-accent)!important}.bg-yellow-400{background-color:var(--ls-accent)!important}.bg-yellow-400:hover{background-color:var(--ls-accent-hover)!important}.text-slate-100{color:var(--ls-text)!important}.text-slate-400{color:var(--ls-muted)!important}
+.rounded-2xl,.rounded-3xl{box-shadow:var(--ls-shadow)}.rounded-xl,.rounded-2xl,.rounded-3xl{border-radius:var(--ls-radius)}
+#main-header,body>header{background:rgba(2,6,23,.88)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.brand-mark{display:inline-grid;place-items:center;width:2rem;height:2rem;margin-right:.55rem;border-radius:.7rem;background:var(--ls-accent);color:#020617;font-weight:900;box-shadow:0 0 24px rgba(250,204,21,.16)}.ls-brand{display:inline-flex;align-items:center;font-weight:800;letter-spacing:-.025em;color:var(--ls-text)}.ls-brand:hover{color:var(--ls-text)}
+.ls-page-links{display:flex;flex-wrap:wrap;gap:.65rem 1rem;align-items:center}.ls-page-links a{font-size:.875rem;color:#cbd5e1}.ls-page-links a:hover,.ls-page-links a[aria-current=page]{color:var(--ls-accent)}
+.ls-topbar{border-bottom:1px solid var(--ls-border);background:rgba(2,6,23,.92);padding:.85rem 1rem}.ls-topbar-inner{max-width:80rem;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}.ls-topbar .ls-page-links{gap:.5rem 1rem}
+.ls-footer{margin-top:auto;border-top:1px solid var(--ls-border);padding:1.5rem 1rem;color:var(--ls-muted);font-size:.875rem}.ls-footer-inner{max-width:80rem;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+@media(max-width:640px){.ls-topbar-inner{align-items:flex-start}.ls-topbar .ls-page-links{width:100%;gap:.6rem .85rem}.ls-topbar .ls-page-links a{font-size:.8rem}.rounded-3xl{border-radius:1.25rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Mantener el encabezado específico de cada vista integrado con la barra global */
+#main-header, body>header:not(.ls-topbar){box-shadow:0 8px 30px rgba(0,0,0,.12)}
+body>main{flex:0 0 auto}
