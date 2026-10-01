@@ -39,3 +39,7 @@ button,.ls-footer-cta,.ls-page-links a{will-change:transform}.cfg-feature+span{t
 @media(max-width:850px){.ls-footer-main{grid-template-columns:1fr 1fr;gap:2rem}}
 @media(max-width:520px){.ls-footer-main{grid-template-columns:1fr;gap:1.6rem;padding-top:2.25rem}.ls-footer-bottom{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.ls-reveal{opacity:1;transform:none;transition:none}}
+
+/* Acceso de cuenta destacado en la navegación global */
+.ls-page-links .ls-auth-link{display:inline-flex;align-items:center;justify-content:center;padding:.48rem .8rem;border-radius:.65rem;background:var(--ls-accent);color:#020617;font-weight:800;border:1px solid var(--ls-accent);white-space:nowrap}.ls-page-links .ls-auth-link:hover{background:var(--ls-accent-hover);color:#020617;transform:translateY(-1px);box-shadow:0 6px 18px rgba(250,204,21,.15)}
+@media(max-width:640px){.ls-page-links .ls-auth-link{padding:.4rem .65rem}}
