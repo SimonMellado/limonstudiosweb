@@ -1,0 +1,28 @@
+require('dotenv').config();
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const session = require('express-session');
+const rateLimit = require('express-rate-limit');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const {getPool} = require('./db');
+const routes = require('./routes');
+const app = express();
+app.disable('x-powered-by');
+app.set('trust proxy', 1);
+app.use(helmet({crossOriginResourcePolicy:{policy:'cross-origin'},contentSecurityPolicy:false}));
+app.use(cors({origin:(process.env.FRONTEND_URL||'http://localhost:8080').split(',').map(s=>s.trim()),credentials:true,methods:['GET','POST','PATCH','DELETE','OPTIONS']}));
+app.use(express.json({limit:'200kb'}));
+app.use(express.urlencoded({extended:false,limit:'30kb'}));
+app.use(session({name:'limon.sid',secret:process.env.SESSION_SECRET||'development-only-change-me',resave:false,saveUninitialized:false,cookie:{httpOnly:true,secure:process.env.COOKIE_SECURE==='true',sameSite:'lax',maxAge:1000*60*60*8}}));
+app.use(passport.initialize()); app.use(passport.session());
+passport.serializeUser((user,done)=>done(null,user.id));
+passport.deserializeUser(async(id,done)=>{try{const [rows]=await getPool().execute('SELECT id,first_name,last_name,email,role,email_verified,blocked FROM users WHERE id=?',[id]);done(null,rows[0]||false);}catch(e){done(e);}});
+if(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET){passport.use(new GoogleStrategy({clientID:process.env.GOOGLE_CLIENT_ID,clientSecret:process.env.GOOGLE_CLIENT_SECRET,callbackURL:process.env.GOOGLE_CALLBACK_URL},async(_a,_r,profile,done)=>{try{const email=(profile.emails?.[0]?.value||'').toLowerCase();if(!email)return done(null,false);const db=getPool();let [rows]=await db.execute('SELECT * FROM users WHERE email=? OR google_id=? LIMIT 1',[email,profile.id]);let user=rows[0];if(user){if(!user.google_id)await db.execute('UPDATE users SET google_id=?,email_verified=TRUE WHERE id=?',[profile.id,user.id]);}else{const name=(profile.displayName||'Cliente').trim().split(/\s+/);const [result]=await db.execute('INSERT INTO users(first_name,last_name,email,google_id,email_verified) VALUES(?,?,?,?,TRUE)',[name.shift()||'Cliente',name.join(' '),email,profile.id]);user={id:result.insertId};}const [fresh]=await db.execute('SELECT id,first_name,last_name,email,role,email_verified,blocked FROM users WHERE id=?',[user.id]);if(fresh[0]?.blocked)return done(null,false);return done(null,fresh[0]);}catch(e){return done(e);}}));}
+app.use('/api',rateLimit({windowMs:15*60*1000,limit:300,standardHeaders:true,legacyHeaders:false}));
+app.use('/api/auth',rateLimit({windowMs:15*60*1000,limit:25,standardHeaders:true,legacyHeaders:false}));
+app.get('/api/health',(_req,res)=>res.json({ok:true,service:'Limón Studios API'}));
+app.use('/api',routes);
+app.use((err,_req,res,_next)=>{console.error(err);res.status(err.status||500).json({error:process.env.NODE_ENV==='production'?'Error interno del servidor':err.message||'Error interno'});});
+module.exports=app;

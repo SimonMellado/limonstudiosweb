@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limón Studios - Venta Online</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍋</text></svg>">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-yellow-400 selection:text-black">
 
-    <!-- Header / Navbar -->
     <header id="main-header" class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-2 text-xl font-bold tracking-wider text-white hover:opacity-90 transition">
@@ -22,6 +22,7 @@
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
                 <a href="index.html#servicios" class="hover:text-yellow-400 transition">Servicios</a>
                 <a href="configurador.html" class="hover:text-yellow-400 transition">Configurador</a>
+                <a href="dashboard.html" class="hover:text-yellow-400 transition">Mis pedidos</a>
                 <a href="portafolio.html" class="hover:text-yellow-400 transition">Portafolio</a>
                 <a href="faq.html" class="hover:text-yellow-400 transition">FAQ</a>
                 <a href="contacto.html" class="hover:text-yellow-400 transition">Contacto</a>
@@ -32,7 +33,7 @@
                     <i data-lucide="shopping-cart" class="w-6 h-6"></i>
                     <span id="cart-badge" class="absolute -top-1 -right-1 bg-yellow-400 text-black font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
-                <button onclick="toggleModal('login-modal')" class="hidden sm:inline-flex px-4 py-2 text-sm font-semibold text-slate-900 bg-yellow-400 hover:bg-yellow-300 rounded-lg transition shadow-lg shadow-yellow-400/20">
+                <button onclick="location.href='login.html'" class="hidden sm:inline-flex px-4 py-2 text-sm font-semibold text-slate-900 bg-yellow-400 hover:bg-yellow-300 rounded-lg transition shadow-lg shadow-yellow-400/20">
                     Iniciar Sesión
                 </button>
                 <button onclick="toggleModal('register-modal')" class="hidden sm:inline-flex px-4 py-2 text-sm font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg transition">
@@ -45,9 +46,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main id="main-content" class="flex-grow">
-        <!-- Hero Section -->
         <section class="relative py-20 lg:py-28 overflow-hidden border-b border-slate-800/80">
             <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-purple-500/10 pointer-events-none"></div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -71,7 +70,6 @@
             </div>
         </section>
 
-        <!-- Services Grid -->
         <section id="servicios" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-white mb-4">Nuestros Servicios Principales</h2>
@@ -79,7 +77,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-yellow-400/50 transition">
                     <div>
                         <div class="w-12 h-12 bg-yellow-400/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6">
@@ -99,7 +96,6 @@
                     </button>
                 </div>
 
-                <!-- Service 2 -->
                 <div class="bg-slate-900 border-2 border-yellow-400/80 rounded-2xl p-6 flex flex-col justify-between shadow-xl shadow-yellow-400/5 relative">
                     <span class="absolute -top-3 right-6 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Popular</span>
                     <div>
@@ -120,7 +116,6 @@
                     </button>
                 </div>
 
-                <!-- Service 3 -->
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-yellow-400/50 transition">
                     <div>
                         <div class="w-12 h-12 bg-yellow-400/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6">
@@ -142,7 +137,6 @@
             </div>
         </section>
 
-        <!-- Tracker / Timeline -->
         <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-white mb-4">Estado de Tu Proyecto</h2>
@@ -186,7 +180,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer id="main-footer" class="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -220,17 +213,14 @@
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-900 text-center text-xs text-slate-600">
-            &copy; 2026 Limón Studios. Todos los derechos reservados.
+            &copy; 2026 Limón Studios. Todos los derechos reservados. · <a href="politicas.html" class="hover:text-yellow-400">Políticas y cookies</a> · <a href="dashboard.html" class="hover:text-yellow-400">Mis pedidos</a>
         </div>
     </footer>
 
-    <!-- Chat AI Button -->
     <button id="ai-btn" onclick="toggleModal('ai-modal')" class="fixed bottom-6 right-6 p-4 bg-yellow-400 text-slate-950 rounded-full shadow-2xl hover:bg-yellow-300 transition z-40 flex items-center justify-center">
         <i data-lucide="bot" class="w-6 h-6"></i>
     </button>
 
-    <!-- Modals -->
-    <!-- Cart Modal -->
     <div id="cart-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex justify-end hidden">
         <div class="w-full max-w-md bg-slate-900 h-full p-6 flex flex-col justify-between border-l border-slate-800">
             <div>
@@ -239,7 +229,6 @@
                     <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
                 </div>
                 <div id="cart-items" class="space-y-4 max-h-[60vh] overflow-y-auto">
-                    <!-- Dynamic cart content -->
                 </div>
             </div>
             <div class="border-t border-slate-800 pt-4">
@@ -247,14 +236,14 @@
                     <span>Total</span>
                     <span id="cart-total-price" class="text-yellow-400">$0 CLP</span>
                 </div>
-                <button onclick="checkout()" class="w-full py-3 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-300 transition">
+                <div class="space-y-2 py-3"><p class="text-sm font-semibold text-white">Método de pago</p><label class="flex items-center gap-2 text-sm text-slate-300"><input type="radio" name="payment-method" value="TRANSFER" checked> Transferencia bancaria (validación manual)</label><label class="flex items-center gap-2 text-sm text-slate-300"><input type="radio" name="payment-method" value="FLOW"> Flow (requiere configuración)</label></div>
+                    <button onclick="checkout()" class="w-full py-3 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-300 transition">
                     Procesar Pago (Flow / Transferencia)
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Register Modal -->
     <div id="register-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 relative">
             <button onclick="toggleModal('register-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
@@ -283,10 +272,9 @@
         </div>
     </div>
 
-    <!-- Login Modal -->
     <div id="login-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 relative">
-            <button onclick="toggleModal('login-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
+            <button onclick="location.href='login.html'" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
             <h3 class="text-xl font-bold text-white mb-6 text-center">Acceso a Clientes</h3>
             <form onsubmit="event.preventDefault(); toggleModal('login-modal');" class="space-y-4">
                 <div>
@@ -302,7 +290,6 @@
         </div>
     </div>
 
-    <!-- AI Assistant Modal -->
     <div id="ai-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg overflow-hidden flex flex-col h-[500px]">
             <div class="p-4 bg-slate-950 border-b border-slate-800 flex justify-between items-center">
@@ -324,7 +311,6 @@
         </div>
     </div>
 
-    <!-- Policy Generator Modal -->
     <div id="policy-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl p-6 relative">
             <button onclick="toggleModal('policy-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
@@ -336,6 +322,7 @@ En Limón Studios recopilamos información personal básica únicamente para la 
         </div>
     </div>
 
+    <script src="api-config.js"></script>
     <script src="script.js"></script>
     <script>lucide.createIcons();</script>
 </body>

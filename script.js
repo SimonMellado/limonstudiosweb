@@ -1,126 +1,17 @@
-// Carrito de compras global
-let cart = [];
-
-function toggleModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.toggle('hidden');
-    }
-}
-
-function toggleCartModal() {
-    toggleModal('cart-modal');
-}
-
-function addToCart(name, price) {
-    cart.push({ name, price });
-    updateCartUI();
-    toggleCartModal();
-}
-
-function updateCartUI() {
-    const badge = document.getElementById('cart-badge');
-    const itemsContainer = document.getElementById('cart-items');
-    const totalPriceEl = document.getElementById('cart-total-price');
-
-    if (!badge || !itemsContainer || !totalPriceEl) return;
-
-    if (cart.length > 0) {
-        badge.innerText = cart.length;
-        badge.classList.remove('hidden');
-    } else {
-        badge.classList.add('hidden');
-    }
-
-    itemsContainer.innerHTML = '';
-    let total = 0;
-
-    cart.forEach((item, index) => {
-        total += item.price;
-        const itemEl = document.createElement('div');
-        itemEl.className = 'flex justify-between items-center bg-slate-950 p-3 rounded-xl border border-slate-800';
-        itemEl.innerHTML = `
-            <div>
-                <p class="font-semibold text-white text-sm">${item.name}</p>
-                <p class="text-xs text-yellow-400">$${item.price.toLocaleString('es-CL')} CLP</p>
-            </div>
-            <button onclick="removeFromCart(${index})" class="text-slate-500 hover:text-red-400 text-xs">Eliminar</button>
-        `;
-        itemsContainer.appendChild(itemEl);
-    });
-
-    totalPriceEl.innerText = `$${total.toLocaleString('es-CL')} CLP`;
-}
-
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCartUI();
-}
-
-function calculateCustomPrice() {
-    const typeEl = document.getElementById('cfg-type');
-    if (!typeEl) return 60000;
-    const basePrice = parseInt(typeEl.value);
-    const checkboxes = document.querySelectorAll('.cfg-feature:checked');
-    let total = basePrice;
-
-    checkboxes.forEach(cb => {
-        total += parseInt(cb.value);
-    });
-
-    const totalEl = document.getElementById('cfg-total');
-    if (totalEl) {
-        totalEl.innerText = `$${total.toLocaleString('es-CL')} CLP`;
-    }
-    return total;
-}
-
-function addConfiguredToCart() {
-    const select = document.getElementById('cfg-type');
-    if (!select) return;
-    const typeName = select.options[select.selectedIndex].text.split('(')[0].trim();
-    const total = calculateCustomPrice();
-    addToCart(typeName, total);
-}
-
-function sendAIMessage() {
-    const input = document.getElementById('ai-input');
-    if (!input) return;
-    const text = input.value.trim();
-    if (!text) return;
-
-    const messages = document.getElementById('ai-messages');
-    
-    // User message
-    const userMsg = document.createElement('div');
-    userMsg.className = 'bg-yellow-400 text-slate-950 p-3 rounded-xl max-w-[80%] ml-auto text-right font-medium';
-    userMsg.innerText = text;
-    messages.appendChild(userMsg);
-
-    input.value = '';
-    messages.scrollTop = messages.scrollHeight;
-
-    // AI response simulation
-    setTimeout(() => {
-        const aiMsg = document.createElement('div');
-        aiMsg.className = 'bg-slate-800 text-slate-200 p-3 rounded-xl max-w-[80%]';
-        aiMsg.innerText = 'Gracias por tu consulta. Nuestros servicios incluyen garantía de optimización, entrega puntual y soporte continuo. ¿Quieres agendar una breve cotización por WhatsApp?';
-        messages.appendChild(aiMsg);
-        messages.scrollTop = messages.scrollHeight;
-    }, 1000);
-}
-
-function checkout() {
-    if (cart.length === 0) {
-        alert('Tu carrito está vacío');
-        return;
-    }
-    alert('Redirigiendo a la pasarela segura Flow / Registro de transferencia...');
-    cart = [];
-    updateCartUI();
-    toggleCartModal();
-}
-
-function showUnavailableNotice() {
-    alert('El portafolio y la vista previa de sitios de demostración están en mantenimiento/construcción por actualización de catálogo.');
-}
+const API_BASE = window.LIMON_API_BASE || 'http://localhost:3001/api';
+let cart = JSON.parse(localStorage.getItem('limon_cart') || '[]');
+function toggleModal(modalId){const el=document.getElementById(modalId);if(el)el.classList.toggle('hidden');}
+function toggleCartModal(){toggleModal('cart-modal');}
+function persistCart(){localStorage.setItem('limon_cart',JSON.stringify(cart));}
+function addToCart(name,price,details={}){cart.push({name:String(name),price:Number(price),details});persistCart();updateCartUI();const modal=document.getElementById('cart-modal');if(modal)modal.classList.remove('hidden');}
+function updateCartUI(){const badge=document.getElementById('cart-badge'),items=document.getElementById('cart-items'),totalEl=document.getElementById('cart-total-price');if(!items||!totalEl)return;if(badge){badge.textContent=cart.length;badge.classList.toggle('hidden',cart.length===0);}items.replaceChildren();let total=0;cart.forEach((item,index)=>{total+=Number(item.price)||0;const row=document.createElement('div');row.className='flex justify-between items-center bg-slate-950 p-3 rounded-xl border border-slate-800 gap-3';const info=document.createElement('div');const title=document.createElement('p');title.className='font-semibold text-white text-sm';title.textContent=item.name;const price=document.createElement('p');price.className='text-xs text-yellow-400';price.textContent=`$${Number(item.price).toLocaleString('es-CL')} CLP`;info.append(title,price);const remove=document.createElement('button');remove.className='text-slate-400 hover:text-red-400 text-xs';remove.textContent='Eliminar';remove.addEventListener('click',()=>removeFromCart(index));row.append(info,remove);items.appendChild(row);});totalEl.textContent=`$${total.toLocaleString('es-CL')} CLP`;persistCart();}
+function removeFromCart(index){cart.splice(index,1);updateCartUI();}
+function calculateCustomPrice(){const type=document.getElementById('cfg-type');if(!type)return 60000;let total=Number(type.value)||60000;document.querySelectorAll('.cfg-feature:checked').forEach(cb=>total+=Number(cb.value)||0);const out=document.getElementById('cfg-total');if(out)out.textContent=`$${total.toLocaleString('es-CL')} CLP`;return total;}
+function addConfiguredToCart(){const select=document.getElementById('cfg-type');if(!select)return;const name=select.options[select.selectedIndex].text.split('(')[0].trim();const features=[...document.querySelectorAll('.cfg-feature:checked')].map(x=>({name:x.parentElement.innerText.trim(),price:Number(x.value)}));const details={description:document.getElementById('cfg-details')?.value||'',features};addToCart(name,calculateCustomPrice(),details);}
+async function api(path,options={}){const response=await fetch(`${API_BASE}${path}`,{credentials:'include',headers:{'Content-Type':'application/json',...(options.headers||{})},...options});let data={};try{data=await response.json();}catch{}if(!response.ok)throw new Error(data.error||`Error ${response.status}`);return data;}
+function showMessage(message){let el=document.getElementById('global-message');if(!el){el=document.createElement('div');el.id='global-message';el.className='fixed bottom-5 left-1/2 -translate-x-1/2 z-[100] max-w-[90vw] rounded-xl border border-slate-700 bg-slate-900 px-5 py-3 text-sm text-white shadow-xl';document.body.appendChild(el);}el.textContent=message;el.classList.remove('hidden');}
+async function checkout(){if(!cart.length){showMessage('Tu carrito está vacío.');return;}try{const {user}=await api('/auth/me');if(!user){location.href='login.html?next=checkout';return;}const payment=document.querySelector('input[name="payment-method"]:checked')?.value||'TRANSFER';const itemName=cart.map(i=>i.name).join(' + ').slice(0,180);const total=cart.reduce((sum,i)=>sum+Number(i.price||0),0);const details={items:cart};const order=await api('/orders',{method:'POST',body:JSON.stringify({itemName,total,details,paymentMethod:payment,estimatedDays:7})});cart=[];persistCart();updateCartUI();toggleCartModal();if(payment==='FLOW'){showMessage('Pedido creado. Flow se habilitará al configurar sus credenciales.');}else{showMessage(`Pedido ${order.publicId} creado. Contacta por WhatsApp para coordinar la transferencia y validación.`);window.open(`https://wa.me/56937014472?text=${encodeURIComponent(`Hola, soy cliente de Limón Studios. Creé el pedido ${order.publicId} por $${total.toLocaleString('es-CL')} CLP y quiero coordinar la transferencia.`)}`,'_blank','noopener');}setTimeout(()=>location.href='dashboard.html',900);}catch(e){showMessage(e.message);}}
+async function sendAIMessage(){const input=document.getElementById('ai-input');if(!input)return;const text=input.value.trim();if(!text)return;const messages=document.getElementById('ai-messages');const user=document.createElement('div');user.className='bg-yellow-400 text-slate-950 p-3 rounded-xl max-w-[80%] ml-auto text-right font-medium';user.textContent=text;messages?.appendChild(user);input.value='';try{const data=await api('/support/ai',{method:'POST',body:JSON.stringify({message:text})});const reply=document.createElement('div');reply.className='bg-slate-800 text-slate-200 p-3 rounded-xl max-w-[90%] whitespace-pre-wrap';reply.textContent=data.reply;messages?.appendChild(reply);}catch(e){const reply=document.createElement('div');reply.className='bg-slate-800 text-slate-200 p-3 rounded-xl max-w-[90%]';reply.textContent=e.message==='Failed to fetch'?'No se pudo conectar con el soporte. Contacta por WhatsApp.':e.message;messages?.appendChild(reply);}if(messages)messages.scrollTop=messages.scrollHeight;}
+function showUnavailableNotice(){showMessage('Esta sección está en preparación. Escríbenos por WhatsApp para consultar disponibilidad.');}
+function initCookieBanner(){if(localStorage.getItem('limon_cookie_consent'))return;const box=document.createElement('section');box.id='cookie-consent';box.className='fixed bottom-4 left-4 right-4 z-[90] mx-auto max-w-4xl rounded-2xl border border-slate-700 bg-slate-900 p-5 shadow-2xl text-slate-200';box.innerHTML='<h2 class="font-bold text-white mb-2">Preferencias de cookies</h2><p class="text-sm mb-4">Usamos cookies necesarias para que el sitio funcione. Las cookies analíticas o de marketing solo deben activarse con tu consentimiento.</p><div class="flex flex-wrap gap-2"><button id="cookie-accept" class="rounded-lg bg-yellow-400 px-4 py-2 font-semibold text-slate-950">Aceptar todas</button><button id="cookie-reject" class="rounded-lg border border-slate-600 px-4 py-2">Rechazar no esenciales</button><a class="px-3 py-2 underline" href="politicas.html">Ver políticas</a></div>';document.body.appendChild(box);const save=v=>{localStorage.setItem('limon_cookie_consent',JSON.stringify({necessary:true,analytics:v,marketing:v,savedAt:new Date().toISOString()}));box.remove();};box.querySelector('#cookie-accept').addEventListener('click',()=>save(true));box.querySelector('#cookie-reject').addEventListener('click',()=>save(false));}
+document.addEventListener('DOMContentLoaded',()=>{updateCartUI();initCookieBanner();});

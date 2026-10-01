@@ -1,0 +1,4 @@
+require('dotenv').config();
+const argon2=require('argon2');
+const {getPool}=require('./db');
+(async()=>{const email=String(process.env.ADMIN_EMAIL||'').trim().toLowerCase();const password=String(process.env.ADMIN_PASSWORD||'');if(!email||!password||password.length<14){console.error('Configura ADMIN_EMAIL y ADMIN_PASSWORD (mínimo 14 caracteres) en .env.');process.exit(1);}const db=getPool();const hash=await argon2.hash(password);await db.execute("INSERT INTO users(first_name,last_name,email,password_hash,role,email_verified) VALUES('Administrador','',?,?, 'ADMIN',TRUE) ON DUPLICATE KEY UPDATE password_hash=VALUES(password_hash),role='ADMIN',email_verified=TRUE",[email,hash]);console.log(`Administrador preparado: ${email}`);await db.end();})().catch(e=>{console.error(e.message);process.exit(1);});
