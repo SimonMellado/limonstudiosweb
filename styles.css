@@ -19,3 +19,23 @@ header{border-color:var(--ls-border)!important}footer{border-color:var(--ls-bord
 /* Mantener el encabezado específico de cada vista integrado con la barra global */
 #main-header, body>header:not(.ls-topbar){box-shadow:0 8px 30px rgba(0,0,0,.12)}
 body>main{flex:0 0 auto}
+
+
+/* Footer premium y microinteracciones */
+body{overflow-x:hidden;background-image:radial-gradient(ellipse at 12% 0%,rgba(250,204,21,.055),transparent 35%),radial-gradient(ellipse at 90% 45%,rgba(56,189,248,.045),transparent 30%)}
+.ls-footer{position:relative;margin-top:5rem;padding:0;border-top:1px solid rgba(148,163,184,.18);background:linear-gradient(180deg,#0b1222 0%,#030712 100%);overflow:hidden}
+.ls-footer:before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,#facc15,transparent);opacity:.8}
+.ls-footer-main{max-width:80rem;margin:auto;padding:3rem 1.25rem 2rem;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:2rem}
+.ls-footer-brand{font-size:1.15rem;font-weight:850;letter-spacing:-.03em;color:#f8fafc;display:inline-flex;align-items:center;gap:.6rem}
+.ls-footer p{color:#94a3b8;line-height:1.7;font-size:.9rem;margin-top:.9rem;max-width:22rem}
+.ls-footer h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:#facc15;font-weight:800;margin:0 0 1rem}
+.ls-footer-links{display:grid;gap:.7rem}.ls-footer-links a{width:fit-content;color:#cbd5e1;font-size:.9rem;transition:color .2s,transform .2s}.ls-footer-links a:hover{color:#facc15;transform:translateX(3px)}
+.ls-footer-cta{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem 1rem;border:1px solid rgba(250,204,21,.4);border-radius:.8rem;color:#facc15!important;font-weight:750;margin-top:1rem;transition:background .2s,transform .2s}.ls-footer-cta:hover{background:rgba(250,204,21,.1);transform:translateY(-2px)}
+.ls-footer-bottom{max-width:80rem;margin:auto;padding:1.1rem 1.25rem;border-top:1px solid rgba(148,163,184,.15);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:#64748b;font-size:.8rem}.ls-footer-bottom a{color:#94a3b8}
+.ls-socials{display:flex;gap:.55rem;margin-top:1rem}.ls-socials a{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:.7rem;border:1px solid #263449;color:#cbd5e1;font-size:.75rem;font-weight:800;transition:all .2s}.ls-socials a:hover{border-color:#facc15;color:#facc15;transform:translateY(-3px)}
+.ls-reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}.ls-reveal.ls-visible{opacity:1;transform:translateY(0)}
+.ls-topbar{position:relative;z-index:20}.brand-mark{transition:transform .25s,box-shadow .25s}.ls-brand:hover .brand-mark{transform:rotate(-8deg) scale(1.06);box-shadow:0 0 28px rgba(250,204,21,.3)}
+button,.ls-footer-cta,.ls-page-links a{will-change:transform}.cfg-feature+span{transition:color .2s}.cfg-feature:checked+span{color:#facc15}
+@media(max-width:850px){.ls-footer-main{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:520px){.ls-footer-main{grid-template-columns:1fr;gap:1.6rem;padding-top:2.25rem}.ls-footer-bottom{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.ls-reveal{opacity:1;transform:none;transition:none}}

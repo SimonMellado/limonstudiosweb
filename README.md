@@ -112,3 +112,15 @@ Añade claves de sandbox y revisa la documentación oficial de Flow. Implementa 
 ## Límites actuales
 
 No se ha podido verificar integración con credenciales reales ni hacer pruebas de extremo a extremo con MySQL, Google, SMTP, Flow o el proveedor IA porque dependen de cuentas y secretos externos. Este ZIP es una base funcional para continuar, no una declaración de que todas las integraciones estén listas para producción.
+
+
+## Mejoras visuales y avisos de pedidos por WhatsApp
+- Todas las páginas comparten un footer ampliado con enlaces, redes/contacto y CTA a WhatsApp.
+- Se añadieron animaciones suaves de aparición al desplazarse y microinteracciones; se respeta `prefers-reduced-motion`.
+- El backend puede enviar una notificación automática al número administrador configurado cuando se crea un pedido, mediante WhatsApp Cloud API de Meta.
+
+### Activar la notificación automática
+1. En Meta for Developers, configura una app de WhatsApp Business y consigue un token de acceso y el **Phone Number ID** del número remitente habilitado.
+2. Copia `backend/.env.example` a `backend/.env` y configura `WHATSAPP_NUMBER=56937014472`, `WHATSAPP_ACCESS_TOKEN` y `WHATSAPP_PHONE_NUMBER_ID`. No pongas el token en archivos frontend ni lo publiques en Git.
+3. Reinicia el backend y haz una compra de prueba. La cuenta/número de WhatsApp debe estar habilitado en Meta y cumplir sus políticas.
+4. Sin esas credenciales el pedido sigue guardándose, pero no se enviará el aviso automático. La API oficial puede requerir plantillas aprobadas para mensajes iniciados fuera de la ventana de atención.
