@@ -1,0 +1,392 @@
+<!-- Creado por Limón Studios -->
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limón Studios - Venta Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-yellow-400 selection:text-black">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 text-xl font-bold tracking-wider text-white hover:opacity-90 transition">
+                <span class="text-2xl">🍋</span>
+                <span>LIMÓN <span class="text-yellow-400">STUDIOS</span></span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="#servicios" class="hover:text-yellow-400 transition">Servicios</a>
+                <a href="#configurador" class="hover:text-yellow-400 transition">Configurador</a>
+                <a href="#portfolio" class="hover:text-yellow-400 transition">Portafolio</a>
+                <a href="#faq" class="hover:text-yellow-400 transition">FAQ</a>
+                <a href="#contacto" class="hover:text-yellow-400 transition">Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button id="cart-btn" onclick="toggleCartModal()" class="relative p-2 text-slate-300 hover:text-yellow-400 transition">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-yellow-400 text-black font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+                <button onclick="toggleModal('login-modal')" class="hidden sm:inline-flex px-4 py-2 text-sm font-semibold text-slate-900 bg-yellow-400 hover:bg-yellow-300 rounded-lg transition shadow-lg shadow-yellow-400/20">
+                    Iniciar Sesión
+                </button>
+                <button onclick="toggleModal('admin-modal')" class="p-2 text-slate-400 hover:text-white transition" title="Panel Admin">
+                    <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative py-20 lg:py-28 overflow-hidden border-b border-slate-800/80">
+            <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-purple-500/10 pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 rounded-full mb-6">
+                    Desarrollo Web & Bots de Discord
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6">
+                    Desarrollamos tu idea.<br><span class="text-yellow-400">Tú decides hasta dónde llegar.</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-lg text-slate-400 mb-10">
+                    Sitios web, sistemas personalizados y bots de Discord creados a tu medida con estándares profesionales y máximo rendimiento.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="#servicios" class="px-6 py-3 text-base font-semibold text-slate-900 bg-yellow-400 hover:bg-yellow-300 rounded-xl transition shadow-xl shadow-yellow-400/20">
+                        Ver Servicios
+                    </a>
+                    <a href="#configurador" class="px-6 py-3 text-base font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition">
+                        Solicitar Cotización
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Grid -->
+        <section id="servicios" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">Nuestros Servicios Principales</h2>
+                <p class="text-slate-400">Planes adaptados a proyectos individuales, empresas y comunidades.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-yellow-400/50 transition">
+                    <div>
+                        <div class="w-12 h-12 bg-yellow-400/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="globe" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Sitio Web Básico</h3>
+                        <p class="text-2xl font-extrabold text-yellow-400 mb-4">$60.000 CLP</p>
+                        <ul class="text-sm text-slate-300 space-y-2 mb-8">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Landing Page Adaptable</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Diseño Responsive</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Formulario de contacto & WhatsApp</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> SEO Básico & Seguridad</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToCart('Sitio Web Básico', 60000)" class="w-full py-3 bg-slate-800 hover:bg-yellow-400 hover:text-black font-semibold rounded-xl transition">
+                        Añadir al Carrito
+                    </button>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-slate-900 border-2 border-yellow-400/80 rounded-2xl p-6 flex flex-col justify-between shadow-xl shadow-yellow-400/5 relative">
+                    <span class="absolute -top-3 right-6 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Popular</span>
+                    <div>
+                        <div class="w-12 h-12 bg-yellow-400/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="code" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Sitio Web Profesional</h3>
+                        <p class="text-2xl font-extrabold text-yellow-400 mb-4">$100.000 CLP</p>
+                        <ul class="text-sm text-slate-300 space-y-2 mb-8">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Todo lo del plan Básico</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Múltiples páginas</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Panel de Administración & Base de Datos</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Sistema de Usuarios</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToCart('Sitio Web Profesional', 100000)" class="w-full py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition shadow-lg shadow-yellow-400/20">
+                        Añadir al Carrito
+                    </button>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-yellow-400/50 transition">
+                    <div>
+                        <div class="w-12 h-12 bg-yellow-400/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="bot" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Bot de Discord Básico</h3>
+                        <p class="text-2xl font-extrabold text-yellow-400 mb-4">$30.000 CLP</p>
+                        <ul class="text-sm text-slate-300 space-y-2 mb-8">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Moderación & Bienvenida</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Comandos Personalizados</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Sistema de Roles</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400"></i> Hosting opcional disponible</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToCart('Bot de Discord Básico', 30000)" class="w-full py-3 bg-slate-800 hover:bg-yellow-400 hover:text-black font-semibold rounded-xl transition">
+                        Añadir al Carrito
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configurador Interactivo -->
+        <section id="configurador" class="py-20 bg-slate-900/50 border-t border-b border-slate-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4">Configurador Personalizado</h2>
+                    <p class="text-slate-400">Selecciona las características necesarias y obtén una estimación instantánea.</p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Tipo de Proyecto</label>
+                        <select id="cfg-type" onchange="calculateCustomPrice()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
+                            <option value="60000">Sitio Web Personalizado (Base $60.000 CLP)</option>
+                            <option value="30000">Bot de Discord Personalizado (Base $30.000 CLP)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-3">Módulos Opcionales</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
+                                <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="20000" onchange="calculateCustomPrice()">
+                                <span class="ml-3 text-sm text-slate-300">Sistema de Usuarios & Login (+ $20.000)</span>
+                            </label>
+                            <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
+                                <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="25000" onchange="calculateCustomPrice()">
+                                <span class="ml-3 text-sm text-slate-300">Pasarela de Pagos / Flow (+ $25.000)</span>
+                            </label>
+                            <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
+                                <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="15000" onchange="calculateCustomPrice()">
+                                <span class="ml-3 text-sm text-slate-300">Panel de Administración (+ $15.000)</span>
+                            </label>
+                            <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
+                                <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="15000" onchange="calculateCustomPrice()">
+                                <span class="ml-3 text-sm text-slate-300">Sistema de Tickets / Soporte (+ $15.000)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">¿Qué necesitas exactamente?</label>
+                        <textarea id="cfg-details" rows="3" placeholder="Describe brevemente los requerimientos específicos..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none"></textarea>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+                        <div>
+                            <span class="text-xs uppercase tracking-wider text-slate-400 block">Estimación aproximada</span>
+                            <span id="cfg-total" class="text-3xl font-extrabold text-yellow-400">$60.000 CLP</span>
+                        </div>
+                        <button onclick="addConfiguredToCart()" class="px-6 py-3 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-300 transition">
+                            Añadir al Carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tracker / Timeline -->
+        <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">Estado de Tu Proyecto</h2>
+                <p class="text-slate-400">Monitorea en tiempo real el progreso de desarrollo y entrega estimada.</p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                    <div>
+                        <span class="text-xs text-slate-400 uppercase tracking-widest">Pedido #LM-8921</span>
+                        <h3 class="text-xl font-bold text-white">Desarrollo Plataforma Web Premium</h3>
+                    </div>
+                    <span class="px-3 py-1 bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 font-semibold text-xs rounded-full">
+                        En desarrollo (60%)
+                    </span>
+                </div>
+
+                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden mb-8">
+                    <div class="bg-yellow-400 h-full w-[60%] transition-all duration-500"></div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block">Tiempo Estimado</span>
+                        <span class="text-sm font-bold text-white">7 Días</span>
+                    </div>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block">Tiempo Transcurrido</span>
+                        <span class="text-sm font-bold text-white">4 Días</span>
+                    </div>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block">Tiempo Restante</span>
+                        <span class="text-sm font-bold text-yellow-400">3 Días</span>
+                    </div>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block">Fecha Estimada</span>
+                        <span class="text-sm font-bold text-white">04 Oct, 2026</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <a href="#" class="flex items-center gap-2 text-lg font-bold text-white mb-4">
+                    🍋 LIMÓN <span class="text-yellow-400">STUDIOS</span>
+                </a>
+                <p class="text-xs text-slate-500">Soluciones de software personalizadas, diseño web moderno y desarrollo de bots de Discord.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Servicios</h4>
+                <ul class="space-y-2 text-xs">
+                    <li>Desarrollo Web</li>
+                    <li>Bots de Discord</li>
+                    <li>Sistemas a Medida</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Legal</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><button onclick="toggleModal('policy-modal')" class="hover:text-yellow-400">Generador de Políticas</button></li>
+                    <li>Términos y Condiciones</li>
+                    <li>Política de Privacidad</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Contacto Directo</h4>
+                <p class="text-xs mb-2">WhatsApp: +56 9 3701 4472</p>
+                <a href="https://wa.me/56937014472" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 rounded-lg text-xs font-semibold hover:bg-emerald-600/30 transition">
+                    Contactar por WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-900 text-center text-xs text-slate-600">
+            &copy; 2026 Limón Studios. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Chat AI Button -->
+    <button onclick="toggleModal('ai-modal')" class="fixed bottom-6 right-6 p-4 bg-yellow-400 text-slate-950 rounded-full shadow-2xl hover:bg-yellow-300 transition z-40 flex items-center justify-center">
+        <i data-lucide="bot" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Modals (Cart, Login, Admin, AI, Policy) -->
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex justify-end hidden">
+        <div class="w-full max-w-md bg-slate-900 h-full p-6 flex flex-col justify-between border-l border-slate-800">
+            <div>
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2"><i data-lucide="shopping-cart"></i> Tu Carrito</h3>
+                    <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
+                </div>
+                <div id="cart-items" class="space-y-4 max-h-[60vh] overflow-y-auto">
+                    <!-- Dynamic cart content -->
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-4">
+                <div class="flex justify-between text-lg font-bold text-white mb-4">
+                    <span>Total</span>
+                    <span id="cart-total-price" class="text-yellow-400">$0 CLP</span>
+                </div>
+                <button onclick="checkout()" class="w-full py-3 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-300 transition">
+                    Procesar Pago (Flow / Transferencia)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Assistant Modal -->
+    <div id="ai-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg overflow-hidden flex flex-col h-[500px]">
+            <div class="p-4 bg-slate-950 border-b border-slate-800 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">🤖</span>
+                    <h3 class="font-bold text-white">Asistente Limón</h3>
+                </div>
+                <button onclick="toggleModal('ai-modal')" class="text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
+            </div>
+            <div id="ai-messages" class="p-4 flex-grow overflow-y-auto space-y-3 text-sm">
+                <div class="bg-slate-800 text-slate-200 p-3 rounded-xl max-w-[80%]">
+                    ¡Hola! Soy el asistente virtual de Limón Studios. ¿En qué puedo ayudarte con tu proyecto web o bot de Discord?
+                </div>
+            </div>
+            <div class="p-3 bg-slate-950 border-t border-slate-800 flex gap-2">
+                <input id="ai-input" type="text" placeholder="Escribe tu mensaje..." class="flex-grow bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-yellow-400">
+                <button onclick="sendAIMessage()" class="px-4 py-2 bg-yellow-400 text-slate-950 font-bold rounded-xl text-sm">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 relative">
+            <button onclick="toggleModal('login-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
+            <h3 class="text-xl font-bold text-white mb-6 text-center">Acceso a Clientes</h3>
+            <form onsubmit="event.preventDefault(); toggleModal('login-modal');" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Correo Electrónico</label>
+                    <input type="email" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Contraseña</label>
+                    <input type="password" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
+                </div>
+                <button type="submit" class="w-full py-3 bg-yellow-400 text-slate-950 font-bold rounded-xl hover:bg-yellow-300 transition">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl max-h-[85vh] flex flex-col p-6 overflow-hidden">
+            <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-800">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2"><i data-lucide="shield"></i> Panel de Administración</h3>
+                <button onclick="toggleModal('admin-modal')" class="text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
+            </div>
+            <div class="overflow-y-auto space-y-4 text-sm">
+                <h4 class="font-semibold text-yellow-400">Gestión de Pedidos Activos</h4>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex justify-between items-center">
+                    <div>
+                        <p class="font-bold text-white">#LM-8921 - Simón Mellado</p>
+                        <p class="text-xs text-slate-400">Sitio Web Premium ($150.000 CLP)</p>
+                    </div>
+                    <select class="bg-slate-900 border border-slate-800 text-xs rounded-lg p-2 text-yellow-400">
+                        <option>Pago Verificado</option>
+                        <option selected>En Desarrollo</option>
+                        <option>En Revisión</option>
+                        <option>Completado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Policy Generator Modal -->
+    <div id="policy-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl p-6 relative">
+            <button onclick="toggleModal('policy-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
+            <h3 class="text-xl font-bold text-white mb-4">Generador de Plantillas Legales</h3>
+            <p class="text-xs text-slate-400 mb-4">Esta plantilla es de carácter informativo. Se recomienda revisión legal independiente.</p>
+            <textarea id="policy-output" rows="8" readonly class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-300 font-mono focus:outline-none mb-4">POLÍTICA DE PRIVACIDAD - LIMÓN STUDIOS
+En Limón Studios recopilamos información personal básica únicamente para la prestación de servicios de desarrollo web y soporte técnico. No transferimos datos a terceros no autorizados.</textarea>
+            <button onclick="navigator.clipboard.writeText(document.getElementById('policy-output').value); alert('Copiado al portapapeles');" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg text-xs">Copiar Texto</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
