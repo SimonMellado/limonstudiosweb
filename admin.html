@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Limón Studios</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- Vista de login si no está autenticado -->
+    <div id="admin-auth-view" class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6">
+            <h1 class="text-xl font-bold text-white mb-2 text-center flex items-center justify-center gap-2">
+                <i data-lucide="lock" class="text-yellow-400"></i> Acceso Administrador
+            </h1>
+            <p class="text-xs text-slate-400 text-center mb-6">Ingresa tus credenciales para administrar la plataforma</p>
+            <form onsubmit="handleAdminLoginFile(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Correo Admin</label>
+                    <input type="email" required placeholder="admin@limonstudios.cl" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Contraseña Admin</label>
+                    <input type="password" required placeholder="••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
+                </div>
+                <button type="submit" class="w-full py-3 bg-yellow-400 text-slate-950 font-bold rounded-xl hover:bg-yellow-300 transition">Entrar al Panel Admin</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Panel Exclusivo de Admin -->
+    <div id="admin-dashboard-view" class="hidden flex-grow p-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center bg-slate-900 border border-slate-800 p-6 rounded-2xl mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="p-3 bg-yellow-400/10 text-yellow-400 rounded-xl border border-yellow-400/20">
+                        <i data-lucide="shield-check" class="w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">Panel de Control de Administración</h1>
+                        <p class="text-xs text-slate-400">Acceso exclusivo de administración - Limón Studios</p>
+                    </div>
+                </div>
+                <a href="index.html" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-sm font-semibold transition">
+                    Volver al Inicio
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <span class="text-xs text-slate-400 block mb-1">Ventas Totales</span>
+                    <p class="text-3xl font-extrabold text-yellow-400">$340.000 CLP</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <span class="text-xs text-slate-400 block mb-1">Pedidos Activos</span>
+                    <p class="text-3xl font-extrabold text-white">4 Proyectos</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <span class="text-xs text-slate-400 block mb-1">Clientes Registrados</span>
+                    <p class="text-3xl font-extrabold text-white">12 Usuarios</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                <h3 class="text-lg font-bold text-white mb-4">Gestión Directa de Pedidos</h3>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <p class="font-bold text-white">#LM-8921 - Simón Mellado</p>
+                        <p class="text-xs text-slate-400">Sitio Web Premium ($150.000 CLP)</p>
+                    </div>
+                    <select class="bg-slate-900 border border-slate-800 text-xs rounded-lg p-2 text-yellow-400 focus:outline-none">
+                        <option>Pago Verificado</option>
+                        <option selected>En Desarrollo</option>
+                        <option>En Revisión</option>
+                        <option>Completado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function handleAdminLoginFile(e) {
+            e.preventDefault();
+            document.getElementById('admin-auth-view').classList.add('hidden');
+            document.getElementById('admin-dashboard-view').classList.remove('hidden');
+        }
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -14,17 +14,17 @@
     <!-- Header / Navbar -->
     <header id="main-header" class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2 text-xl font-bold tracking-wider text-white hover:opacity-90 transition">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-bold tracking-wider text-white hover:opacity-90 transition">
                 <span class="text-2xl">🍋</span>
                 <span>LIMÓN <span class="text-yellow-400">STUDIOS</span></span>
             </a>
 
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-                <a href="#servicios" class="hover:text-yellow-400 transition">Servicios</a>
-                <a href="#configurador" class="hover:text-yellow-400 transition">Configurador</a>
-                <a href="#portfolio" class="hover:text-yellow-400 transition">Portafolio</a>
-                <a href="#faq" class="hover:text-yellow-400 transition">FAQ</a>
-                <a href="#contacto" class="hover:text-yellow-400 transition">Contacto</a>
+                <a href="index.html#servicios" class="hover:text-yellow-400 transition">Servicios</a>
+                <a href="configurador.html" class="hover:text-yellow-400 transition">Configurador</a>
+                <a href="portafolio.html" class="hover:text-yellow-400 transition">Portafolio</a>
+                <a href="faq.html" class="hover:text-yellow-400 transition">FAQ</a>
+                <a href="contacto.html" class="hover:text-yellow-400 transition">Contacto</a>
             </nav>
 
             <div class="flex items-center gap-3">
@@ -38,9 +38,9 @@
                 <button onclick="toggleModal('register-modal')" class="hidden sm:inline-flex px-4 py-2 text-sm font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg transition">
                     Registrarse
                 </button>
-                <button onclick="openAdminModal()" class="p-2 text-slate-400 hover:text-white transition" title="Acceso Administrador">
+                <a href="admin.html" class="p-2 text-slate-400 hover:text-white transition" title="Panel Administrador">
                     <i data-lucide="shield-alert" class="w-5 h-5"></i>
-                </button>
+                </a>
             </div>
         </div>
     </header>
@@ -64,7 +64,7 @@
                     <a href="#servicios" class="px-6 py-3 text-base font-semibold text-slate-900 bg-yellow-400 hover:bg-yellow-300 rounded-xl transition shadow-xl shadow-yellow-400/20">
                         Ver Servicios
                     </a>
-                    <a href="#configurador" class="px-6 py-3 text-base font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition">
+                    <a href="configurador.html" class="px-6 py-3 text-base font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition">
                         Solicitar Cotización
                     </a>
                 </div>
@@ -142,90 +142,8 @@
             </div>
         </section>
 
-        <!-- Portafolio Section (En Construcción) -->
-        <section id="portfolio" class="py-20 bg-slate-900/30 border-t border-b border-slate-800/80">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400/10 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-semibold mb-6">
-                    <i data-lucide="hammer" class="w-4 h-4"></i> Sección Portafolio
-                </div>
-                <h2 class="text-3xl font-bold text-white mb-4">Proyectos & Demostraciones</h2>
-                <p class="text-slate-400 max-w-xl mx-auto mb-10">
-                    Estamos actualizando nuestro catálogo de sitios web y proyectos para mostrar nuestras más recientes soluciones.
-                </p>
-
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-10 max-w-2xl mx-auto shadow-xl relative overflow-hidden">
-                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-yellow-400/5 rounded-full blur-2xl"></div>
-                    <i data-lucide="hard-hat" class="w-16 h-16 text-yellow-400 mx-auto mb-4 animate-bounce"></i>
-                    <h3 class="text-2xl font-bold text-white mb-2">Portafolio en Construcción</h3>
-                    <p class="text-slate-400 text-sm mb-6">
-                        Actualmente no es posible visualizar la vista previa de los sitios web de demostración. Nuestro equipo se encuentra cargando el nuevo showroom interactivo.
-                    </p>
-                    <button onclick="showUnavailableNotice()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl border border-slate-700 transition">
-                        Intentar Ver Demos Demo
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Configurador Interactivo -->
-        <section id="configurador" class="py-20 bg-slate-900/50 border-b border-slate-800">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-white mb-4">Configurador Personalizado</h2>
-                    <p class="text-slate-400">Selecciona las características necesarias y obtén una estimación instantánea.</p>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Tipo de Proyecto</label>
-                        <select id="cfg-type" onchange="calculateCustomPrice()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
-                            <option value="60000">Sitio Web Personalizado (Base $60.000 CLP)</option>
-                            <option value="30000">Bot de Discord Personalizado (Base $30.000 CLP)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-3">Módulos Opcionales</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
-                                <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="20000" onchange="calculateCustomPrice()">
-                                <span class="ml-3 text-sm text-slate-300">Sistema de Usuarios & Login (+ $20.000)</span>
-                            </label>
-                            <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
-                                <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="25000" onchange="calculateCustomPrice()">
-                                <span class="ml-3 text-sm text-slate-300">Pasarela de Pagos / Flow (+ $25.000)</span>
-                            </label>
-                            <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
-                                <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="15000" onchange="calculateCustomPrice()">
-                                <span class="ml-3 text-sm text-slate-300">Panel de Administración (+ $15.000)</span>
-                            </label>
-                            <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
-                                <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="15000" onchange="calculateCustomPrice()">
-                                <span class="ml-3 text-sm text-slate-300">Sistema de Tickets / Soporte (+ $15.000)</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">¿Qué necesitas exactamente?</label>
-                        <textarea id="cfg-details" rows="3" placeholder="Describe brevemente los requerimientos específicos..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none"></textarea>
-                    </div>
-
-                    <div class="flex items-center justify-between pt-4 border-t border-slate-800">
-                        <div>
-                            <span class="text-xs uppercase tracking-wider text-slate-400 block">Estimación aproximada</span>
-                            <span id="cfg-total" class="text-3xl font-extrabold text-yellow-400">$60.000 CLP</span>
-                        </div>
-                        <button onclick="addConfiguredToCart()" class="px-6 py-3 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-300 transition">
-                            Añadir al Carrito
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Tracker / Timeline -->
-        <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-white mb-4">Estado de Tu Proyecto</h2>
                 <p class="text-slate-400">Monitorea en tiempo real el progreso de desarrollo y entrega estimada.</p>
@@ -268,62 +186,11 @@
         </section>
     </main>
 
-    <!-- Admin Dedicated View (Sólo visible para Administrador) -->
-    <div id="admin-dedicated-view" class="hidden flex-grow bg-slate-950 p-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-center bg-slate-900 border border-slate-800 p-6 rounded-2xl mb-8">
-                <div class="flex items-center gap-3">
-                    <div class="p-3 bg-yellow-400/10 text-yellow-400 rounded-xl border border-yellow-400/20">
-                        <i data-lucide="shield-check" class="w-8 h-8"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-2xl font-bold text-white">Panel de Control de Administración</h1>
-                        <p class="text-xs text-slate-400">Acceso exclusivo de administración - Limón Studios</p>
-                    </div>
-                </div>
-                <button onclick="logoutAdmin()" class="px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 rounded-xl text-sm font-semibold transition flex items-center gap-2">
-                    <i data-lucide="log-out" class="w-4 h-4"></i> Cerrar Sesión Admin
-                </button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-                    <span class="text-xs text-slate-400 block mb-1">Ventas Totales</span>
-                    <p class="text-3xl font-extrabold text-yellow-400">$340.000 CLP</p>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-                    <span class="text-xs text-slate-400 block mb-1">Pedidos Activos</span>
-                    <p class="text-3xl font-extrabold text-white">4 Proyectos</p>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-                    <span class="text-xs text-slate-400 block mb-1">Clientes Registrados</span>
-                    <p class="text-3xl font-extrabold text-white">12 Usuarios</p>
-                </div>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
-                <h3 class="text-lg font-bold text-white mb-4">Gestión Directa de Pedidos</h3>
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div>
-                        <p class="font-bold text-white">#LM-8921 - Simón Mellado</p>
-                        <p class="text-xs text-slate-400">Sitio Web Premium ($150.000 CLP)</p>
-                    </div>
-                    <select class="bg-slate-900 border border-slate-800 text-xs rounded-lg p-2 text-yellow-400 focus:outline-none">
-                        <option>Pago Verificado</option>
-                        <option selected>En Desarrollo</option>
-                        <option>En Revisión</option>
-                        <option>Completado</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer id="main-footer" class="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-                <a href="#" class="flex items-center gap-2 text-lg font-bold text-white mb-4">
+                <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white mb-4">
                     🍋 LIMÓN <span class="text-yellow-400">STUDIOS</span>
                 </a>
                 <p class="text-xs text-slate-500">Soluciones de software personalizadas, diseño web moderno y desarrollo de bots de Discord.</p>
@@ -331,17 +198,17 @@
             <div>
                 <h4 class="text-white font-semibold mb-3">Servicios</h4>
                 <ul class="space-y-2 text-xs">
-                    <li>Desarrollo Web</li>
-                    <li>Bots de Discord</li>
-                    <li>Sistemas a Medida</li>
+                    <li><a href="index.html#servicios" class="hover:text-yellow-400">Desarrollo Web</a></li>
+                    <li><a href="index.html#servicios" class="hover:text-yellow-400">Bots de Discord</a></li>
+                    <li><a href="configurador.html" class="hover:text-yellow-400">Sistemas a Medida</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-semibold mb-3">Legal</h4>
+                <h4 class="text-white font-semibold mb-3">Navegación & Legal</h4>
                 <ul class="space-y-2 text-xs">
+                    <li><a href="portafolio.html" class="hover:text-yellow-400">Portafolio</a></li>
+                    <li><a href="faq.html" class="hover:text-yellow-400">Preguntas Frecuentes</a></li>
                     <li><button onclick="toggleModal('policy-modal')" class="hover:text-yellow-400">Generador de Políticas</button></li>
-                    <li>Términos y Condiciones</li>
-                    <li>Política de Privacidad</li>
                 </ul>
             </div>
             <div>
@@ -431,26 +298,6 @@
                     <input type="password" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
                 </div>
                 <button type="submit" class="w-full py-3 bg-yellow-400 text-slate-950 font-bold rounded-xl hover:bg-yellow-300 transition">Iniciar Sesión</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Admin Login Modal -->
-    <div id="admin-login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 relative">
-            <button onclick="toggleModal('admin-login-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x"></i></button>
-            <h3 class="text-xl font-bold text-white mb-2 text-center flex items-center justify-center gap-2"><i data-lucide="lock" class="text-yellow-400"></i> Login Administrador</h3>
-            <p class="text-xs text-slate-400 text-center mb-6">Ingresa las credenciales autorizadas</p>
-            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">Correo Admin</label>
-                    <input id="admin-email-input" type="email" required placeholder="admin@limonstudios.cl" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">Contraseña Admin</label>
-                    <input id="admin-pass-input" type="password" required placeholder="••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
-                </div>
-                <button type="submit" class="w-full py-3 bg-yellow-400 text-slate-950 font-bold rounded-xl hover:bg-yellow-300 transition">Entrar al Panel Admin</button>
             </form>
         </div>
     </div>

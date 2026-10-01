@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurador - Limón Studios</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+
+    <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-bold tracking-wider text-white hover:opacity-90 transition">
+                <span class="text-2xl">🍋</span>
+                <span>LIMÓN <span class="text-yellow-400">STUDIOS</span></span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="index.html#servicios" class="hover:text-yellow-400 transition">Servicios</a>
+                <a href="configurador.html" class="text-yellow-400 font-bold transition">Configurador</a>
+                <a href="portafolio.html" class="hover:text-yellow-400 transition">Portafolio</a>
+                <a href="faq.html" class="hover:text-yellow-400 transition">FAQ</a>
+                <a href="contacto.html" class="hover:text-yellow-400 transition">Contacto</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="admin.html" class="p-2 text-slate-400 hover:text-white transition" title="Panel Administrador">
+                    <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold text-white mb-4">Configurador Personalizado</h1>
+            <p class="text-slate-400">Arma tu paquete ideal y obtén una estimación inmediata.</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Tipo de Proyecto</label>
+                <select id="cfg-type" onchange="calculateCustomPrice()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none">
+                    <option value="60000">Sitio Web Personalizado (Base $60.000 CLP)</option>
+                    <option value="30000">Bot de Discord Personalizado (Base $30.000 CLP)</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-3">Módulos Opcionales</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
+                        <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="20000" onchange="calculateCustomPrice()">
+                        <span class="ml-3 text-sm text-slate-300">Sistema de Usuarios & Login (+ $20.000)</span>
+                    </label>
+                    <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
+                        <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="25000" onchange="calculateCustomPrice()">
+                        <span class="ml-3 text-sm text-slate-300">Pasarela de Pagos / Flow (+ $25.000)</span>
+                    </label>
+                    <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
+                        <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="15000" onchange="calculateCustomPrice()">
+                        <span class="ml-3 text-sm text-slate-300">Panel de Administración (+ $15.000)</span>
+                    </label>
+                    <label class="flex items-center p-3 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer hover:border-slate-700">
+                        <input type="checkbox" class="cfg-feature form-checkbox rounded text-yellow-400" value="15000" onchange="calculateCustomPrice()">
+                        <span class="ml-3 text-sm text-slate-300">Sistema de Tickets / Soporte (+ $15.000)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">¿Qué necesitas exactamente?</label>
+                <textarea id="cfg-details" rows="3" placeholder="Describe brevemente los requerimientos específicos..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:border-yellow-400 focus:outline-none"></textarea>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+                <div>
+                    <span class="text-xs uppercase tracking-wider text-slate-400 block">Estimación aproximada</span>
+                    <span id="cfg-total" class="text-3xl font-extrabold text-yellow-400">$60.000 CLP</span>
+                </div>
+                <button onclick="addConfiguredToCart()" class="px-6 py-3 bg-yellow-400 text-black font-bold rounded-xl hover:bg-yellow-300 transition">
+                    Añadir al Carrito
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-600">
+            &copy; 2026 Limón Studios. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

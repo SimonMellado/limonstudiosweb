@@ -23,6 +23,8 @@ function updateCartUI() {
     const itemsContainer = document.getElementById('cart-items');
     const totalPriceEl = document.getElementById('cart-total-price');
 
+    if (!badge || !itemsContainer || !totalPriceEl) return;
+
     if (cart.length > 0) {
         badge.innerText = cart.length;
         badge.classList.remove('hidden');
@@ -56,7 +58,9 @@ function removeFromCart(index) {
 }
 
 function calculateCustomPrice() {
-    const basePrice = parseInt(document.getElementById('cfg-type').value);
+    const typeEl = document.getElementById('cfg-type');
+    if (!typeEl) return 60000;
+    const basePrice = parseInt(typeEl.value);
     const checkboxes = document.querySelectorAll('.cfg-feature:checked');
     let total = basePrice;
 
@@ -64,12 +68,16 @@ function calculateCustomPrice() {
         total += parseInt(cb.value);
     });
 
-    document.getElementById('cfg-total').innerText = `$${total.toLocaleString('es-CL')} CLP`;
+    const totalEl = document.getElementById('cfg-total');
+    if (totalEl) {
+        totalEl.innerText = `$${total.toLocaleString('es-CL')} CLP`;
+    }
     return total;
 }
 
 function addConfiguredToCart() {
     const select = document.getElementById('cfg-type');
+    if (!select) return;
     const typeName = select.options[select.selectedIndex].text.split('(')[0].trim();
     const total = calculateCustomPrice();
     addToCart(typeName, total);
@@ -77,6 +85,7 @@ function addConfiguredToCart() {
 
 function sendAIMessage() {
     const input = document.getElementById('ai-input');
+    if (!input) return;
     const text = input.value.trim();
     if (!text) return;
 
@@ -110,35 +119,6 @@ function checkout() {
     cart = [];
     updateCartUI();
     toggleCartModal();
-}
-
-function openAdminModal() {
-    toggleModal('admin-login-modal');
-}
-
-function handleAdminLogin(event) {
-    event.preventDefault();
-    toggleModal('admin-login-modal');
-    
-    // Ocultar toda la vista de cliente (header, landing, footer, botón flotante IA)
-    document.getElementById('main-header').classList.add('hidden');
-    document.getElementById('main-content').classList.add('hidden');
-    document.getElementById('main-footer').classList.add('hidden');
-    document.getElementById('ai-btn').classList.add('hidden');
-
-    // Mostrar únicamente el panel de administración
-    document.getElementById('admin-dedicated-view').classList.remove('hidden');
-}
-
-function logoutAdmin() {
-    // Restaurar vista cliente
-    document.getElementById('main-header').classList.remove('hidden');
-    document.getElementById('main-content').classList.remove('hidden');
-    document.getElementById('main-footer').classList.remove('hidden');
-    document.getElementById('ai-btn').classList.remove('hidden');
-
-    // Ocultar panel de administración
-    document.getElementById('admin-dedicated-view').classList.add('hidden');
 }
 
 function showUnavailableNotice() {
