@@ -111,3 +111,36 @@ function checkout() {
     updateCartUI();
     toggleCartModal();
 }
+
+function openAdminModal() {
+    toggleModal('admin-login-modal');
+}
+
+function handleAdminLogin(event) {
+    event.preventDefault();
+    toggleModal('admin-login-modal');
+    
+    // Ocultar toda la vista de cliente (header, landing, footer, botón flotante IA)
+    document.getElementById('main-header').classList.add('hidden');
+    document.getElementById('main-content').classList.add('hidden');
+    document.getElementById('main-footer').classList.add('hidden');
+    document.getElementById('ai-btn').classList.add('hidden');
+
+    // Mostrar únicamente el panel de administración
+    document.getElementById('admin-dedicated-view').classList.remove('hidden');
+}
+
+function logoutAdmin() {
+    // Restaurar vista cliente
+    document.getElementById('main-header').classList.remove('hidden');
+    document.getElementById('main-content').classList.remove('hidden');
+    document.getElementById('main-footer').classList.remove('hidden');
+    document.getElementById('ai-btn').classList.remove('hidden');
+
+    // Ocultar panel de administración
+    document.getElementById('admin-dedicated-view').classList.add('hidden');
+}
+
+function showUnavailableNotice() {
+    alert('El portafolio y la vista previa de sitios de demostración están en mantenimiento/construcción por actualización de catálogo.');
+}
